@@ -1,16 +1,10 @@
-"use client";
-
 import { AdminProtection } from "@/components/AdminProtecton";
-import { getDonationCampaigns } from "./actions";
 import { DonationCampaignForm } from "./donation-campaigns-form";
 import { DonationCampaignList } from "./donation-campaigns-list";
+import { getDonationCampaigns } from "./actions";
 
-export default function DonationCampaignsPage() {
-  const getCampaigns = async () => {
-    return await getDonationCampaigns();
-  };
-
-  const initialCampaigns = getCampaigns();
+export default async function DonationCampaignsPage() {
+  const initialCampaigns = await getDonationCampaigns();
 
   return (
     <AdminProtection>
