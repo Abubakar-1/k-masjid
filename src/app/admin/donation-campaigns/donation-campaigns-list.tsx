@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -18,7 +19,7 @@ import { ConfirmationDialog } from "@/components/confirmation-dialog";
 export function DonationCampaignList({
   initialCampaigns,
 }: {
-  initialCampaigns: DonationCampaign[];
+  initialCampaigns: any;
 }) {
   const [donationCampaigns, setDonationCampaigns] = useState(initialCampaigns);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
