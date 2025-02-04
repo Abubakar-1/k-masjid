@@ -25,11 +25,11 @@ export function DonationCampaignForm() {
 
     const result = await createDonationCampaign(campaign);
     if (result.success) {
-      alert("Campaign created successfully!");
+      // alert("Campaign created successfully!");
       setCampaign(initialCampaignState);
     } else {
       console.error("Failed to create campaign:", result.error);
-      alert("Failed to create campaign.");
+      // alert("Failed to create campaign.");
     }
   };
 
