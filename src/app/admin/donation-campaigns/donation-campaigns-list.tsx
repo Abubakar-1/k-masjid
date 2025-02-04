@@ -39,11 +39,11 @@ export function DonationCampaignList({
     if (campaignToDelete) {
       const result = await deleteDonationCampaign(campaignToDelete);
       if (result.success) {
-        alert("Campaign deleted successfully");
+        // alert("Campaign deleted successfully");
         router.refresh();
       } else {
         console.error("Failed to delete campaign:", result.error);
-        alert(`Failed to delete campaign. ${result.error}`);
+        // alert(`Failed to delete campaign. ${result.error}`);
       }
     }
     setIsConfirmOpen(false);
