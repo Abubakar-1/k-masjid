@@ -5,12 +5,12 @@ import { getDonationCampaigns } from "./actions";
 import { DonationCampaignForm } from "./donation-campaigns-form";
 import { DonationCampaignList } from "./donation-campaigns-list";
 
-export default async function DonationCampaignsPage() {
+export default function DonationCampaignsPage() {
   const getCampaigns = async () => {
     return await getDonationCampaigns();
   };
 
-  const initialCampaigns = await getCampaigns();
+  const initialCampaigns = getCampaigns();
 
   return (
     <AdminProtection>
