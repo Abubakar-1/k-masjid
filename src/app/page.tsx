@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+// import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import "./index.css";
 import Image from "next/image";
@@ -9,9 +9,9 @@ import DonationCards from "@/components/DonationCards";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
-const DynamicHijriDate = dynamic(() => import("@/components/HijriDate"), {
-  ssr: false,
-});
+// const DynamicHijriDate = dynamic(() => import("@/components/HijriDate"), {
+//   ssr: false,
+// });
 const DynamicMobileMenu = dynamic(() => import("@/components/MobileMenu"), {
   ssr: false,
 });
@@ -45,9 +45,9 @@ export default function Home() {
         </nav>
 
         <div className="text-center mt-2">
-          <Suspense fallback={<div>Loading date...</div>}>
+          {/* <Suspense fallback={<div>Loading date...</div>}>
             <DynamicHijriDate />
-          </Suspense>
+          </Suspense> */}
         </div>
 
         <div className="flex items-center justify-center mt-0">
