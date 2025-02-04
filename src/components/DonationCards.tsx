@@ -20,9 +20,6 @@ export default function DonationCards() {
       setDonations(campaigns);
     }
     fetchDonations();
-
-    const interval = setInterval(fetchDonations, 60000); // Fetch every 60 seconds
-    return () => clearInterval(interval); // Cleanup on unmount
   }, []);
 
   const formatCurrency = (amount: number): string => {

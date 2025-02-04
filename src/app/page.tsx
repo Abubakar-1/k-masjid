@@ -15,9 +15,9 @@ export default function Home() {
   const [hijriDate, setHijriDate] = useState({ month: "", year: "", day: "" });
 
   useEffect(() => {
-    const currentHijriMonth = moment().iMonth(); // Get Hijri month (0-indexed)
-    const currentHijriYear = moment().iYear(); // Get Hijri year
-    const currentHijriDay = moment().iDate(); // Get Hijri day
+    const currentHijriMonth = moment().iMonth();
+    const currentHijriYear = moment().iYear();
+    const currentHijriDay = moment().iDate();
 
     const hijriMonthNames = [
       "Muharram",
