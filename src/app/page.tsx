@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import "./index.css";
 import Image from "next/image";
@@ -17,6 +17,27 @@ const DynamicMobileMenu = dynamic(() => import("@/components/MobileMenu"), {
 });
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time (remove this in production)
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-[#FEF5ED] to-[#EE9A49]">
+        <div className="text-3xl font-bold text-primary animate-pulse">
+          Loading...
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative bg-pattern bg-cover min-h-screen">
       <div className="absolute inset-0 bg-gradient-to-r from-[#FEF5ED] to-[#EE9A49] opacity-30"></div>
