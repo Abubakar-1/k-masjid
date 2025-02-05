@@ -5,14 +5,14 @@ import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-// import { CampaignModal } from "./CampaignModal";
+import { CampaignModal } from "./CampaignModal";
 import { getDonationCampaigns } from "@/app/actions";
 import type { DonationCampaign } from "@/types/donation";
 
 export default function DonationCards() {
   const [donations, setDonations] = useState<DonationCampaign[]>([]);
-  // const [selectedCampaign, setSelectedCampaign] =
-  //   useState<DonationCampaign | null>(null);
+  const [selectedCampaign, setSelectedCampaign] =
+    useState<DonationCampaign | null>(null);
 
   useEffect(() => {
     async function fetchDonations() {
@@ -41,7 +41,7 @@ export default function DonationCards() {
           <Card
             key={donation.id}
             className="overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
-            // onClick={() => setSelectedCampaign(donation)}
+            onClick={() => setSelectedCampaign(donation)}
           >
             <div className="relative h-40 sm:h-48">
               <Image
@@ -88,11 +88,11 @@ export default function DonationCards() {
           </Card>
         ))}
       </div>
-      {/* <CampaignModal
+      <CampaignModal
         campaign={selectedCampaign}
         isOpen={!!selectedCampaign}
         onClose={() => setSelectedCampaign(null)}
-      /> */}
+      />
     </div>
   );
 }

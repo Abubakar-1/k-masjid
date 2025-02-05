@@ -10,11 +10,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import Image from "next/image";
-import { PaystackButton } from "./PaystackButton";
-import { updateDonation } from "@/app/actions";
+// import { PaystackButton } from "./PaystackButton";
+// import { updateDonation } from "@/app/actions";
 import type { DonationCampaign } from "@/types/donation";
-import { useToast } from "@/components/ui/toast-context";
-import { useRouter } from "next/navigation";
+// import { useToast } from "@/components/ui/toast-context";
+// import { useRouter } from "next/navigation";
 
 interface CampaignModalProps {
   campaign: DonationCampaign | null;
@@ -29,30 +29,30 @@ export function CampaignModal({
 }: CampaignModalProps) {
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
-  const { addToast } = useToast();
-  const router = useRouter();
+  // const { addToast } = useToast();
+  // const router = useRouter();
 
   if (!campaign) return null;
 
-  const handlePaymentSuccess = async (reference: string) => {
-    const result = await updateDonation(campaign.id, reference, Number(amount));
-    if (result.success) {
-      addToast({
-        title: "Payment Successful",
-        description: "Your donation has been processed and verified.",
-        variant: "default",
-      });
-      router.refresh();
-    } else {
-      addToast({
-        title: "Payment Failed",
-        description:
-          result.error || "There was an error processing your donation.",
-        variant: "destructive",
-      });
-    }
-    onClose();
-  };
+  // const handlePaymentSuccess = async (reference: string) => {
+  //   const result = await updateDonation(campaign.id, reference, Number(amount));
+  //   if (result.success) {
+  //     addToast({
+  //       title: "Payment Successful",
+  //       description: "Your donation has been processed and verified.",
+  //       variant: "default",
+  //     });
+  //     router.refresh();
+  //   } else {
+  //     addToast({
+  //       title: "Payment Failed",
+  //       description:
+  //         result.error || "There was an error processing your donation.",
+  //       variant: "destructive",
+  //     });
+  //   }
+  //   onClose();
+  // };
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -97,12 +97,12 @@ export function CampaignModal({
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
-          <PaystackButton
+          {/* <PaystackButton
             amount={Number(amount)}
             email={email}
             onSuccess={handlePaymentSuccess}
             onClose={onClose}
-          />
+          /> */}
         </div>
       </DialogContent>
     </Dialog>
