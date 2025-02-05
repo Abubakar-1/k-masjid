@@ -1,5 +1,3 @@
-"use client";
-
 import { db } from "@/lib/firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { revalidatePath } from "next/cache";
