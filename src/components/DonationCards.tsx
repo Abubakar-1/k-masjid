@@ -23,10 +23,6 @@ export default function DonationCards() {
   }, []);
 
   const formatCurrency = (amount: number): string => {
-    if (typeof window === "undefined") {
-      // Fallback for server-side rendering
-      return `IDR ${amount.toLocaleString("id-ID")}`;
-    }
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
       currency: "IDR",
