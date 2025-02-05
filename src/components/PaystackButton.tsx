@@ -15,9 +15,9 @@ interface PaystackButtonProps {
 export function PaystackButton({
   amount,
   email,
-  onSuccess,
-  onClose,
-}: PaystackButtonProps) {
+}: // onSuccess,
+// onClose,
+PaystackButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
 
   const config: any = {
