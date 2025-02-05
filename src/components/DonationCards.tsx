@@ -22,14 +22,14 @@ export default function DonationCards() {
     fetchDonations();
   }, []);
 
-  // const formatCurrency = (amount: number): string => {
-  //   return new Intl.NumberFormat("id-ID", {
-  //     style: "currency",
-  //     currency: "IDR",
-  //     minimumFractionDigits: 0,
-  //     maximumFractionDigits: 0,
-  //   }).format(amount);
-  // };
+  const formatCurrency = (amount: number): string => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
 
   return (
     <div className="container mx-auto px-4 py-6 sm:py-8">
@@ -77,7 +77,8 @@ export default function DonationCards() {
               <div className="space-y-1 sm:space-y-2">
                 <p className="text-xs sm:text-sm font-medium">Terkumpul</p>
                 <p className="text-xs sm:text-sm">
-                  {donation.collected} dari target {donation.target}
+                  {formatCurrency(donation.collected)} dari target{" "}
+                  {formatCurrency(donation.target)}
                 </p>
                 <p className="text-xs sm:text-sm text-gray-500">
                   {donation.daysLeft} hari lagi
