@@ -2,8 +2,9 @@
 "use client";
 
 import { useState } from "react";
-import { usePaystackPayment } from "react-paystack";
+// import { usePaystackPayment } from "react-paystack";
 import { Button } from "@/components/ui/button";
+import { log } from "console";
 
 interface PaystackButtonProps {
   amount: number;
@@ -26,8 +27,9 @@ export function PaystackButton({
     amount: amount * 100, // Paystack expects amount in kobo
     publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY!,
   };
+  console.log(config)
 
-  const initializePayment = usePaystackPayment(config);
+  // const initializePayment = usePaystackPayment(config);
 
   const handlePayment = () => {
     try {
