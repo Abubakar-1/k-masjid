@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use server";
+"use client";
 
 import { db } from "@/lib/firebase";
 import {
