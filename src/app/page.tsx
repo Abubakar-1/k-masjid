@@ -4,8 +4,8 @@
 import { Button } from "@/components/ui/button";
 import "./index.css";
 import Image from "next/image";
-import PrayerSchedule from "@/components/PrayerSchedule";
-import DonationCards from "@/components/DonationCards";
+// import PrayerSchedule from "@/components/PrayerSchedule";
+// import DonationCards from "@/components/DonationCards";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 
@@ -61,11 +61,11 @@ export default function Home() {
         </div>
 
         <div className="mt-8 md:mt-12 px-4 md:px-8" id="prayer">
-          <PrayerSchedule />
+          {/* <PrayerSchedule /> */}
         </div>
 
         <div className="mt-8 md:mt-12 px-4 md:px-8">
-          <DonationCards />
+          {/* <DonationCards /> */}
         </div>
       </div>
     </div>
