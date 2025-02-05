@@ -21,7 +21,7 @@ export function PaystackButton({
   const [isLoading, setIsLoading] = useState(false);
 
   const config: any = {
-    reference: new Date().getTime().toString(),
+    reference: "new Date().getTime().toString()",
     email: email,
     amount: amount * 100, // Paystack expects amount in kobo
     publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY!,

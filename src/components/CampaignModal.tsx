@@ -13,7 +13,7 @@ import Image from "next/image";
 import { PaystackButton } from "./PaystackButton";
 import { updateDonation } from "@/app/actions";
 import type { DonationCampaign } from "@/types/donation";
-import { useToast } from "@/components/ui/toast-context";
+// import { useToast } from "@/components/ui/toast-context";
 import { useRouter } from "next/navigation";
 
 interface CampaignModalProps {
@@ -29,7 +29,7 @@ export function CampaignModal({
 }: CampaignModalProps) {
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
-  const { addToast } = useToast();
+  // const { addToast } = useToast();
   const router = useRouter();
 
   if (!campaign) return null;
@@ -37,19 +37,19 @@ export function CampaignModal({
   const handlePaymentSuccess = async (reference: string) => {
     const result = await updateDonation(campaign.id, reference, Number(amount));
     if (result.success) {
-      addToast({
-        title: "Payment Successful",
-        description: "Your donation has been processed and verified.",
-        variant: "default",
-      });
+      // addToast({
+      //   title: "Payment Successful",
+      //   description: "Your donation has been processed and verified.",
+      //   variant: "default",
+      // });
       router.refresh();
     } else {
-      addToast({
-        title: "Payment Failed",
-        description:
-          result.error || "There was an error processing your donation.",
-        variant: "destructive",
-      });
+      // addToast({
+      //   title: "Payment Failed",
+      //   description:
+      //     result.error || "There was an error processing your donation.",
+      //   variant: "destructive",
+      // });
     }
     onClose();
   };
