@@ -1,3 +1,5 @@
+"use client";
+
 import { AdminProtection } from "@/components/AdminProtecton";
 import { DonationCampaignForm } from "./donation-campaigns-form";
 import { DonationCampaignList } from "./donation-campaigns-list";
