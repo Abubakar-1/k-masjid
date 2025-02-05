@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState } from "react";
-import { usePaystackPayment } from "react-paystack";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 
 interface PaystackButtonProps {
@@ -19,43 +18,50 @@ export function PaystackButton({
   onClose,
 }: PaystackButtonProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const [PaystackButton, setPaystackButton] = useState<any>(null);
 
-  const config: any = {
-    reference: new Date().getTime().toString(),
-    email: email,
-    amount: amount * 100, // Paystack expects amount in kobo
-    publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY!,
-  };
-
-  const initializePayment = usePaystackPayment(config);
+  useEffect(() => {
+    import("react-paystack").then((mod) => {
+      setPaystackButton(() => mod.usePaystackPayment);
+    });
+  }, []);
 
   const handlePayment = () => {
+    if (!PaystackButton) return;
+
     try {
-      setIsLoading(true); // Start the loading state
+      setIsLoading(true);
+
+      const config = {
+        reference: new Date().getTime().toString(),
+        email: email,
+        amount: amount * 100,
+        publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY!,
+      };
+
+      const initializePayment = PaystackButton(config);
 
       initializePayment({
         onSuccess: (response: any) => {
-          // Payment successful
           setIsLoading(false);
           console.log(response);
           onSuccess(response.reference);
         },
         onClose: () => {
-          // Payment modal closed
           setIsLoading(false);
           onClose();
         },
       });
     } catch (error) {
       console.error("Error during payment initialization:", error);
-      setIsLoading(false); // Ensure loading state is reset in case of error
+      setIsLoading(false);
     }
   };
 
   return (
     <Button
       onClick={handlePayment}
-      disabled={isLoading || amount <= 0 || !email}
+      disabled={isLoading || amount <= 0 || !email || !PaystackButton}
     >
       {isLoading ? "Processing..." : "Donate Now"}
     </Button>
