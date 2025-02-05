@@ -4,7 +4,6 @@
 import { useState } from "react";
 // import { usePaystackPayment } from "react-paystack";
 import { Button } from "@/components/ui/button";
-import { log } from "console";
 
 interface PaystackButtonProps {
   amount: number;
@@ -27,7 +26,7 @@ export function PaystackButton({
     amount: amount * 100, // Paystack expects amount in kobo
     publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY!,
   };
-  console.log(config)
+  console.log(config);
 
   // const initializePayment = usePaystackPayment(config);
 
@@ -35,19 +34,19 @@ export function PaystackButton({
     try {
       setIsLoading(true); // Start the loading state
 
-      initializePayment({
-        onSuccess: (response: any) => {
-          // Payment successful
-          setIsLoading(false);
-          console.log(response);
-          onSuccess(response.reference);
-        },
-        onClose: () => {
-          // Payment modal closed
-          setIsLoading(false);
-          onClose();
-        },
-      });
+      // initializePayment({
+      //   onSuccess: (response: any) => {
+      //     // Payment successful
+      //     setIsLoading(false);
+      //     console.log(response);
+      //     onSuccess(response.reference);
+      //   },
+      //   onClose: () => {
+      //     // Payment modal closed
+      //     setIsLoading(false);
+      //     onClose();
+      //   },
+      // });
     } catch (error) {
       console.error("Error during payment initialization:", error);
       setIsLoading(false); // Ensure loading state is reset in case of error
