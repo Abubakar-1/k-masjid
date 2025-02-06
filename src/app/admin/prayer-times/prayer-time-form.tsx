@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, useEffect } from "react";
@@ -35,7 +36,13 @@ export function PrayerTimeForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await updatePrayerTimes(prayerTimes);
-    // Optionally show a success message
+    try {
+      await updatePrayerTimes(prayerTimes);
+      alert("Paryer time updated");
+    } catch (error: any) {
+      console.log(error);
+      alert("Couldnt update prayer time");
+    }
   };
 
   const handleInputChange = (

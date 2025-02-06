@@ -36,7 +36,7 @@ export function PaystackButton({
         reference: new Date().getTime().toString(),
         email: email,
         amount: amount * 100,
-        publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY!,
+        publicKey: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
       };
 
       const initializePayment = PaystackButton(config);
@@ -44,7 +44,7 @@ export function PaystackButton({
       initializePayment({
         onSuccess: (response: any) => {
           setIsLoading(false);
-          console.log(response);
+          console.log(response, "soks respomse");
           onSuccess(response.reference);
         },
         onClose: () => {

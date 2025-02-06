@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
 
 import { db } from "@/lib/firebase";
 import {
@@ -12,7 +11,6 @@ import {
   doc,
 } from "firebase/firestore";
 import type { DonationCampaign } from "@/types/donation";
-import { revalidatePath } from "next/cache";
 
 export async function getDonationCampaigns(): Promise<DonationCampaign[]> {
   try {
@@ -53,12 +51,13 @@ export async function updateDonation(
     );
 
     // Verify the payment with Paystack API
+    console.log(process.env.NEXT_PUBLIC_PAYSTACK_SECRET_KEY);
     const response = await fetch(
       `https://api.paystack.co/transaction/verify/${reference}`,
       {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_PAYSTACK_SECRET_KEY}`,
           "Content-Type": "application/json",
         },
       }
@@ -114,9 +113,6 @@ export async function updateDonation(
       });
 
       console.log(`Successfully updated donation for campaign ${donationId}`);
-
-      // Revalidate the donations page
-      revalidatePath("/donations");
 
       return { success: true };
     } else {

@@ -1,5 +1,4 @@
-"use client";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { db } from "@/lib/firebase";
 import {
   collection,
@@ -10,7 +9,6 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-import { revalidatePath } from "next/cache";
 import { Timestamp } from "firebase/firestore";
 
 export async function createDonationCampaign(data: {
@@ -27,7 +25,6 @@ export async function createDonationCampaign(data: {
       collected: 0,
       createdAt: new Date(),
     });
-    revalidatePath("/admin/donation-campaigns");
     return { success: true };
   } catch (error) {
     console.error("Error creating donation campaign:", error);
@@ -36,7 +33,6 @@ export async function createDonationCampaign(data: {
 }
 
 export async function getDonationCampaigns(): Promise<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   { id: string; [key: string]: any }[]
 > {
   try {
@@ -69,7 +65,6 @@ export async function getDonationCampaigns(): Promise<
 export async function deleteDonationCampaign(campaignId: string) {
   try {
     await deleteDoc(doc(db, "donationCampaigns", campaignId));
-    revalidatePath("/admin/donation-campaigns");
     return { success: true };
   } catch (error) {
     console.error("Error deleting donation campaign:", error);
