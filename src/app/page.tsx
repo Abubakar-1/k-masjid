@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import "./index.css";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import PrayerSchedule from "@/components/PrayerSchedule";
 import DonationCards from "@/components/DonationCards";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { getPrayerTimes, PrayerTimes } from "@/lib/getPrayerTimes";
 
 const DynamicHijriDate = dynamic(() => import("@/components/HijriDate"), {
   ssr: false,
@@ -17,17 +18,20 @@ const DynamicMobileMenu = dynamic(() => import("@/components/MobileMenu"), {
 });
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
+    async function fetchPrayerTimes() {
+      setLoading(true);
+      const times = await getPrayerTimes();
+      setPrayerTimes(times);
+      setLoading(false);
+    }
+    fetchPrayerTimes();
   }, []);
 
-  if (isLoading) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-[#FEF5ED] to-[#EE9A49]">
         <div className="text-3xl font-bold text-primary animate-pulse">
@@ -81,7 +85,7 @@ export default function Home() {
         </div>
 
         <div className="mt-8 md:mt-12 px-4 md:px-8" id="prayer">
-          <PrayerSchedule />
+          <PrayerSchedule prayerTimes={prayerTimes} loading={loading} />
         </div>
 
         <div className="mt-8 md:mt-12 px-4 md:px-8">

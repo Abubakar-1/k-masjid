@@ -25,7 +25,7 @@ export default function DonationCards() {
   const formatCurrency = (amount: number): string => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
-      currency: "IDR",
+      currency: "NGN",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
@@ -75,13 +75,13 @@ export default function DonationCards() {
                 className="h-2"
               />
               <div className="space-y-1 sm:space-y-2">
-                <p className="text-xs sm:text-sm font-medium">Terkumpul</p>
+                <p className="text-xs sm:text-sm font-medium">Collected</p>
                 <p className="text-xs sm:text-sm">
-                  {formatCurrency(donation.collected)} dari target{" "}
+                  {formatCurrency(donation.collected)} from the target{" "}
                   {formatCurrency(donation.target)}
                 </p>
                 <p className="text-xs sm:text-sm text-gray-500">
-                  {donation.daysLeft} hari lagi
+                  {donation.daysLeft} days left
                 </p>
               </div>
             </CardContent>

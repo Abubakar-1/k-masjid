@@ -28,6 +28,7 @@ export function PaystackButton({
 
   const handlePayment = () => {
     if (!PaystackButton) return;
+    onClose();
 
     try {
       setIsLoading(true);

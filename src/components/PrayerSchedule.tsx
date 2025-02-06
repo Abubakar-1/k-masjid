@@ -1,26 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
+import { PrayerTimes } from "@/lib/getPrayerTimes";
 import { MapPin } from "lucide-react";
-import { getPrayerTimes, type PrayerTimes } from "@/lib/getPrayerTimes";
 
-export default function PrayerSchedule() {
-  const [prayerTimes, setPrayerTimes] = useState<PrayerTimes | null>(null);
-
-  useEffect(() => {
-    async function fetchPrayerTimes() {
-      const times = await getPrayerTimes();
-      setPrayerTimes(times);
-    }
-    fetchPrayerTimes();
-  }, []);
-
-  if (!prayerTimes) {
-    return <div>Loading prayer times...</div>;
-  }
-
+export default function PrayerSchedule({
+  prayerTimes,
+}: {
+  prayerTimes: PrayerTimes | null;
+  loading: boolean;
+}) {
   return (
     <Card className="max-w-6xl mx-auto border-none rounded-xl">
       <CardContent className="p-4 sm:p-6">
@@ -66,21 +56,21 @@ export default function PrayerSchedule() {
             <div className="grid grid-cols-6 items-center gap-2 sm:gap-4 px-2 sm:px-4 py-1 text-xs sm:text-sm">
               <div className="col-span-1 font-medium">Adhan</div>
               <div className="col-span-5 grid grid-cols-5 rounded-[10px] py-2 sm:py-4 bg-[#FEF5ED] text-center">
-                <div>{prayerTimes.fajr.adhan}</div>
-                <div>{prayerTimes.dhuhr.adhan}</div>
-                <div>{prayerTimes.asr.adhan}</div>
-                <div>{prayerTimes.maghrib.adhan}</div>
-                <div>{prayerTimes.isha.adhan}</div>
+                <div>{prayerTimes?.fajr.adhan || "N/A"} </div>
+                <div>{prayerTimes?.dhuhr.adhan || "N/A"}</div>
+                <div>{prayerTimes?.asr.adhan || "N/A"}</div>
+                <div>{prayerTimes?.maghrib.adhan || "N/A"}</div>
+                <div>{prayerTimes?.isha.adhan || "N/A"}</div>
               </div>
             </div>
             <div className="grid grid-cols-6 items-center gap-2 sm:gap-4 px-2 sm:px-4 py-1 text-xs sm:text-sm">
               <div className="col-span-1 font-medium">Iqamah</div>
               <div className="col-span-5 grid grid-cols-5 rounded-[10px] py-2 sm:py-4 bg-[#FEF5ED] text-center">
-                <div>{prayerTimes.fajr.iqamah}</div>
-                <div>{prayerTimes.dhuhr.iqamah}</div>
-                <div>{prayerTimes.asr.iqamah}</div>
-                <div>{prayerTimes.maghrib.iqamah}</div>
-                <div>{prayerTimes.isha.iqamah}</div>
+                <div>{prayerTimes?.fajr.iqamah || "N/A"}</div>
+                <div>{prayerTimes?.dhuhr.iqamah || "N/A"}</div>
+                <div>{prayerTimes?.asr.iqamah || "N/A"}</div>
+                <div>{prayerTimes?.maghrib.iqamah || "N/A"}</div>
+                <div>{prayerTimes?.isha.iqamah || "N/A"}</div>
               </div>
             </div>
           </div>

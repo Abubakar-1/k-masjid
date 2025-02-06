@@ -28,6 +28,9 @@ export default function AdminLayout({
         <Button asChild variant="ghost">
           <Link href="/admin/donation-campaigns">Donation Campaigns</Link>
         </Button>
+        <Button asChild variant="ghost">
+          <Link href="/">Back to Home Page</Link>
+        </Button>
       </nav>
       <main className="flex-1 p-6">{children}</main>
     </div>
